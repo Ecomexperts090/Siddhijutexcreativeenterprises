@@ -97,6 +97,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            cursor: pointer;
         }
 
         nav ul {
@@ -121,6 +122,15 @@
         .mobile-toggle {
             display: none;
             cursor: pointer;
+        }
+
+        /* --- Page Router Styling --- */
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
         }
 
         /* --- Hero Slider --- */
@@ -305,7 +315,7 @@
             color: var(--dark-olive);
         }
 
-        /* --- Products Section --- */
+        /* --- Products Grid Styling --- */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -351,7 +361,7 @@
             margin-top: 10px;
         }
 
-        /* --- Product Detail View (Hidden by default) --- */
+        /* --- Product Detail View --- */
         #product-view {
             display: none;
             position: fixed;
@@ -547,7 +557,7 @@
 
     <!-- Header -->
     <header id="main-header">
-        <div class="logo">
+        <div class="logo" onclick="navigateTo('home')">
             <i data-lucide="leaf" color="#556B2F"></i> JUTE MASTER
         </div>
         <div class="mobile-toggle" onclick="toggleMenu()">
@@ -555,164 +565,175 @@
         </div>
         <nav id="nav-menu">
             <ul>
-                <li><a onclick="scrollToSection('home')">Home</a></li>
-                <li><a onclick="scrollToSection('company')">Company</a></li>
-                <li><a onclick="scrollToSection('products')">Products</a></li>
-                <li><a onclick="scrollToSection('exports')">Exports</a></li>
-                <li><a onclick="scrollToSection('vision')">Our Vision</a></li>
-                <li><a onclick="scrollToSection('contact')">Contact</a></li>
+                <li><a onclick="navigateTo('home', 'home')">Home</a></li>
+                <li><a onclick="navigateTo('home', 'company')">Company</a></li>
+                <li><a onclick="navigateTo('products')">Products</a></li>
+                <li><a onclick="navigateTo('home', 'exports')">Exports</a></li>
+                <li><a onclick="navigateTo('home', 'vision')">Our Vision</a></li>
+                <li><a onclick="navigateTo('home', 'contact')">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Slider -->
-    <section id="home" class="hero" style="padding: 0;">
-        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1544208062-359255072784?q=80&w=2000&auto=format&fit=crop');">
-            <div class="hero-content">
-                <h1>Jute Bags Manufacturing & Wholesale</h1>
-                <p style="font-size: 1.2rem; margin-bottom: 25px;">Premium Export Quality Products for Global Markets.</p>
-                <a onclick="scrollToSection('products')" class="cta-btn">View Products</a>
-            </div>
-        </div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=2000&auto=format&fit=crop');">
-            <div class="hero-content">
-                <h1>Eco-Friendly Jute Fabrics</h1>
-                <p style="font-size: 1.2rem; margin-bottom: 25px;">Sustainable Bulk Supply Solutions Across India.</p>
-                <a onclick="scrollToSection('products')" class="cta-btn">Our Collection</a>
-            </div>
-        </div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1598928636135-d146006ff4be?q=80&w=2000&auto=format&fit=crop');">
-            <div class="hero-content">
-                <h1>Customized Jute Bags</h1>
-                <p style="font-size: 1.2rem; margin-bottom: 25px;">Tailored Branding Solutions for Modern Businesses.</p>
-                <a onclick="scrollToSection('products')" class="cta-btn">Get Started</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Welcome Section -->
-    <section id="company">
-        <div class="welcome-container reveal">
-            <div class="welcome-img">
-                <img src="https://images.unsplash.com/photo-1620311093116-2bc0837d2f44?q=80&w=1000&auto=format&fit=crop" alt="Jute Production">
-            </div>
-            <div class="welcome-text">
-                <p style="color: var(--olive-green); font-weight: bold; text-transform: uppercase; margin-bottom: 10px;">Who We Are</p>
-                <h2 style="font-size: 36px; margin-bottom: 20px;">Welcome To Our Jute Fabrics Business</h2>
-                <p style="color: var(--text-muted); font-size: 18px; margin-bottom: 20px;">
-                    We are a leading manufacturer and wholesaler of premium jute fabrics and jute bags for export and domestic markets. With decades of expertise, we blend traditional craftsmanship with modern industrial processes.
-                </p>
-                <p style="color: var(--text-muted);">
-                    Our commitment to sustainability ensures that every fiber produced contributes to a greener planet. We serve diverse industries ranging from fashion to heavy industrial packaging.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Vision Section -->
-    <section id="vision" class="vision-section">
-        <div class="section-title reveal">
-            <h2>Our Vision</h2>
-        </div>
-        <div class="vision-card reveal">
-            <i data-lucide="eye" size="48" style="color: var(--olive-green); margin-bottom: 20px;"></i>
-            <p style="font-size: 22px; font-style: italic; color: var(--dark-olive);">
-                "To promote eco-friendly, sustainable, and high-quality jute products across global markets while supporting green business practices."
-            </p>
-        </div>
-    </section>
-
-    <!-- Why Choose Us / Stats -->
-    <section>
-        <div class="section-title reveal">
-            <h2>Why Choose Us</h2>
-        </div>
-        <div class="grid-4">
-            <div class="stat-box reveal">
-                <i data-lucide="award" size="40"></i>
-                <span class="counter" data-target="100">0</span>
-                <p>Premium Quality %</p>
-            </div>
-            <div class="stat-box reveal">
-                <i data-lucide="truck" size="40"></i>
-                <span class="counter" data-target="500">0</span>
-                <p>Bulk Supply Monthly (Tons)</p>
-            </div>
-            <div class="stat-box reveal">
-                <i data-lucide="globe" size="40"></i>
-                <span class="counter" data-target="25">0</span>
-                <p>Countries Exported</p>
-            </div>
-            <div class="stat-box reveal">
-                <i data-lucide="clock" size="40"></i>
-                <span class="counter" data-target="99">0</span>
-                <p>On-Time Delivery %</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section id="products">
-        <div class="section-title reveal">
-            <h2>Our Products</h2>
-        </div>
-        <div class="product-grid" id="product-container">
-            <!-- JS will populate products here -->
-        </div>
-    </section>
-
-    <!-- Exports Section -->
-    <section id="exports" style="background: var(--olive-green); color: white;">
-        <div class="welcome-container reveal">
-            <div class="welcome-text">
-                <h2 style="color: var(--golden-yellow); margin-bottom: 20px;">Global Export Expertise</h2>
-                <p style="font-size: 18px; margin-bottom: 20px;">
-                    We specialize in high-volume export orders, ensuring international standards for packaging, quality check, and logistics documentation.
-                </p>
-                <ul style="list-style: none; margin-bottom: 30px;">
-                    <li style="margin-bottom: 10px;"><i data-lucide="check-circle" size="16" style="margin-right: 10px;"></i> SGS & Quality Inspections Available</li>
-                    <li style="margin-bottom: 10px;"><i data-lucide="check-circle" size="16" style="margin-right: 10px;"></i> Customizable Branding for Importers</li>
-                    <li style="margin-bottom: 10px;"><i data-lucide="check-circle" size="16" style="margin-right: 10px;"></i> Real-time Shipment Tracking</li>
-                </ul>
-                <a onclick="scrollToSection('contact')" class="cta-btn" style="background: white; color: var(--olive-green);">Request Export Quote</a>
-            </div>
-            <div class="welcome-img">
-                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop" alt="Exports">
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Form -->
-    <section id="contact" class="contact-section">
-        <div class="section-title reveal">
-            <h2>Contact Us</h2>
-        </div>
-        <div class="contact-wrapper reveal">
-            <form id="contactForm">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" id="cName" placeholder="Enter your name" required>
+    <!-- Page Content Container -->
+    <div id="page-router">
+        
+        <!-- HOME PAGE CONTENT -->
+        <div id="home-page" class="page-content active">
+            <!-- Hero Slider -->
+            <section id="home" class="hero" style="padding: 0;">
+                <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1544208062-359255072784?q=80&w=2000&auto=format&fit=crop');">
+                    <div class="hero-content">
+                        <h1>Jute Bags Manufacturing & Wholesale</h1>
+                        <p style="font-size: 1.2rem; margin-bottom: 25px;">Premium Export Quality Products for Global Markets.</p>
+                        <a onclick="navigateTo('products')" class="cta-btn">View Products</a>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="tel" id="cPhone" placeholder="Enter phone number" required>
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=2000&auto=format&fit=crop');">
+                    <div class="hero-content">
+                        <h1>Eco-Friendly Jute Fabrics</h1>
+                        <p style="font-size: 1.2rem; margin-bottom: 25px;">Sustainable Bulk Supply Solutions Across India.</p>
+                        <a onclick="navigateTo('products')" class="cta-btn">Our Collection</a>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="cEmail" placeholder="Enter email">
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1598928636135-d146006ff4be?q=80&w=2000&auto=format&fit=crop');">
+                    <div class="hero-content">
+                        <h1>Customized Jute Bags</h1>
+                        <p style="font-size: 1.2rem; margin-bottom: 25px;">Tailored Branding Solutions for Modern Businesses.</p>
+                        <a onclick="navigateTo('products')" class="cta-btn">Get Started</a>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Product Requirement</label>
-                    <input type="text" id="cRequirement" placeholder="e.g. 5000 Jute Shopping Bags" required>
+            </section>
+
+            <!-- Welcome Section -->
+            <section id="company">
+                <div class="welcome-container reveal">
+                    <div class="welcome-img">
+                        <img src="https://images.unsplash.com/photo-1620311093116-2bc0837d2f44?q=80&w=1000&auto=format&fit=crop" alt="Jute Production">
+                    </div>
+                    <div class="welcome-text">
+                        <p style="color: var(--olive-green); font-weight: bold; text-transform: uppercase; margin-bottom: 10px;">Who We Are</p>
+                        <h2 style="font-size: 36px; margin-bottom: 20px;">Welcome To Our Jute Fabrics Business</h2>
+                        <p style="color: var(--text-muted); font-size: 18px; margin-bottom: 20px;">
+                            We are a leading manufacturer and wholesaler of premium jute fabrics and jute bags for export and domestic markets. With decades of expertise, we blend traditional craftsmanship with modern industrial processes.
+                        </p>
+                        <p style="color: var(--text-muted);">
+                            Our commitment to sustainability ensures that every fiber produced contributes to a greener planet. We serve diverse industries ranging from fashion to heavy industrial packaging.
+                        </p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Message</label>
-                    <textarea id="cMessage" rows="4" placeholder="How can we help you?"></textarea>
+            </section>
+
+            <!-- Vision Section -->
+            <section id="vision" class="vision-section">
+                <div class="section-title reveal">
+                    <h2>Our Vision</h2>
                 </div>
-                <button type="submit" class="cta-btn" style="width: 100%;">Send Query via WhatsApp</button>
-            </form>
+                <div class="vision-card reveal">
+                    <i data-lucide="eye" size="48" style="color: var(--olive-green); margin-bottom: 20px;"></i>
+                    <p style="font-size: 22px; font-style: italic; color: var(--dark-olive);">
+                        "To promote eco-friendly, sustainable, and high-quality jute products across global markets while supporting green business practices."
+                    </p>
+                </div>
+            </section>
+
+            <!-- Why Choose Us / Stats -->
+            <section>
+                <div class="section-title reveal">
+                    <h2>Why Choose Us</h2>
+                </div>
+                <div class="grid-4">
+                    <div class="stat-box reveal">
+                        <i data-lucide="award" size="40"></i>
+                        <span class="counter" data-target="100">0</span>
+                        <p>Premium Quality %</p>
+                    </div>
+                    <div class="stat-box reveal">
+                        <i data-lucide="truck" size="40"></i>
+                        <span class="counter" data-target="500">0</span>
+                        <p>Bulk Supply Monthly (Tons)</p>
+                    </div>
+                    <div class="stat-box reveal">
+                        <i data-lucide="globe" size="40"></i>
+                        <span class="counter" data-target="25">0</span>
+                        <p>Countries Exported</p>
+                    </div>
+                    <div class="stat-box reveal">
+                        <i data-lucide="clock" size="40"></i>
+                        <span class="counter" data-target="99">0</span>
+                        <p>On-Time Delivery %</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exports Section -->
+            <section id="exports" style="background: var(--olive-green); color: white;">
+                <div class="welcome-container reveal">
+                    <div class="welcome-text">
+                        <h2 style="color: var(--golden-yellow); margin-bottom: 20px;">Global Export Expertise</h2>
+                        <p style="font-size: 18px; margin-bottom: 20px;">
+                            We specialize in high-volume export orders, ensuring international standards for packaging, quality check, and logistics documentation.
+                        </p>
+                        <ul style="list-style: none; margin-bottom: 30px;">
+                            <li style="margin-bottom: 10px;"><i data-lucide="check-circle" size="16" style="margin-right: 10px;"></i> SGS & Quality Inspections Available</li>
+                            <li style="margin-bottom: 10px;"><i data-lucide="check-circle" size="16" style="margin-right: 10px;"></i> Customizable Branding for Importers</li>
+                            <li style="margin-bottom: 10px;"><i data-lucide="check-circle" size="16" style="margin-right: 10px;"></i> Real-time Shipment Tracking</li>
+                        </ul>
+                        <a onclick="scrollToSection('contact')" class="cta-btn" style="background: white; color: var(--olive-green);">Request Export Quote</a>
+                    </div>
+                    <div class="welcome-img">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop" alt="Exports">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Form -->
+            <section id="contact" class="contact-section">
+                <div class="section-title reveal">
+                    <h2>Contact Us</h2>
+                </div>
+                <div class="contact-wrapper reveal">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="cName" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="cPhone" placeholder="Enter phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="cEmail" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label>Product Requirement</label>
+                            <input type="text" id="cRequirement" placeholder="e.g. 5000 Jute Shopping Bags" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea id="cMessage" rows="4" placeholder="How can we help you?"></textarea>
+                        </div>
+                        <button type="submit" class="cta-btn" style="width: 100%;">Send Query via WhatsApp</button>
+                    </form>
+                </div>
+            </section>
         </div>
-    </section>
+
+        <!-- SEPARATE PRODUCTS PAGE CONTENT -->
+        <div id="products-page" class="page-content">
+            <section id="products-internal">
+                <div class="section-title">
+                    <h2>Our Exclusive Products</h2>
+                    <p style="color: var(--text-muted);">Crafting Sustainable Quality for a Greener Tomorrow</p>
+                </div>
+                <div class="product-grid" id="product-container">
+                    <!-- JS will populate products here -->
+                </div>
+            </section>
+        </div>
+
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -724,19 +745,19 @@
             <div class="footer-col">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a onclick="scrollToSection('home')">Home</a></li>
-                    <li><a onclick="scrollToSection('company')">About Company</a></li>
-                    <li><a onclick="scrollToSection('exports')">Exports</a></li>
-                    <li><a onclick="scrollToSection('vision')">Our Vision</a></li>
+                    <li><a onclick="navigateTo('home', 'home')">Home</a></li>
+                    <li><a onclick="navigateTo('home', 'company')">About Company</a></li>
+                    <li><a onclick="navigateTo('home', 'exports')">Exports</a></li>
+                    <li><a onclick="navigateTo('home', 'vision')">Our Vision</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Products</h4>
                 <ul>
-                    <li><a>Shopping Bags</a></li>
-                    <li><a>Industrial Sacks</a></li>
-                    <li><a>Hessian Cloth</a></li>
-                    <li><a>Jute Twine</a></li>
+                    <li><a onclick="navigateTo('products')">Shopping Bags</a></li>
+                    <li><a onclick="navigateTo('products')">Industrial Sacks</a></li>
+                    <li><a onclick="navigateTo('products')">Hessian Cloth</a></li>
+                    <li><a onclick="navigateTo('products')">Jute Twine</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -771,11 +792,40 @@
             { id: 7, name: "Promotional Tote", desc: "Lightweight, eco-friendly marketing bag.", fullDesc: "Budget-friendly tote bags for mass distribution during trade shows and exhibitions.", specs: "Handle: Cotton Webbing, Fabric: Fine Jute", img: "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=600" }
         ];
 
+        // NAVIGATION LOGIC
+        function navigateTo(page, sectionId = null) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            
+            // Show requested page
+            const targetPage = document.getElementById(`${page}-page`);
+            if(targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // Close mobile menu
+            document.getElementById('nav-menu').classList.remove('active');
+
+            // Handle scrolling
+            if (sectionId) {
+                setTimeout(() => {
+                    scrollToSection(sectionId);
+                }, 100);
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Re-run animation observer for home page elements
+            if(page === 'home') {
+                document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            }
+        }
+
         // Populate Products
         const productGrid = document.getElementById('product-container');
         products.forEach(p => {
             const card = document.createElement('div');
-            card.className = 'product-card reveal';
+            card.className = 'product-card reveal active'; // Visible by default on products page
             card.innerHTML = `
                 <div class="p-img"><img src="${p.img}" alt="${p.name}"></div>
                 <div class="p-info">
@@ -802,8 +852,8 @@
                         <p style="background: #f9f9f9; padding: 15px; border-radius: 5px; font-family: monospace;">${p.specs}</p>
                         <div class="btn-group">
                             <button class="cta-btn" onclick="sendReq('${p.name}')">Send Requirement</button>
-                            <button class="cta-btn" style="background: #eee; color: #333;" onclick="scrollToSection('contact'); closeProductDetail();">Contact Us</button>
-                            <button class="cta-btn" style="background: #eee; color: #333;" onclick="scrollToSection('vision'); closeProductDetail();">Our Vision</button>
+                            <button class="cta-btn" style="background: #eee; color: #333;" onclick="navigateTo('home', 'contact'); closeProductDetail();">Contact Us</button>
+                            <button class="cta-btn" style="background: #eee; color: #333;" onclick="navigateTo('home', 'vision'); closeProductDetail();">Our Vision</button>
                         </div>
                     </div>
                 </div>
@@ -827,9 +877,11 @@
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
+            if(document.getElementById('home-page').classList.contains('active')) {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }
         }
         setInterval(nextSlide, 5000);
 
@@ -855,7 +907,6 @@
                     top: el.offsetTop - 80,
                     behavior: 'smooth'
                 });
-                document.getElementById('nav-menu').classList.remove('active');
             }
         }
 
@@ -877,6 +928,8 @@
 
         // Counter Animation
         function startCounter(el) {
+            if(el.dataset.started) return;
+            el.dataset.started = "true";
             const target = +el.getAttribute('data-target');
             const speed = 200;
             const updateCount = () => {
